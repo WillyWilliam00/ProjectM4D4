@@ -1,1 +1,38 @@
+.brand {
+    color: #0b690b;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    
+}
+.bi-cart {
+    font-size: 30px;
+}
+
+.Number-Book-Dinamic {
+    padding: 10px;
+    padding-top: 7px;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.position-relative:hover   .Number-Book-Dinamic {
+    transform: translate(-40px, -50%);
+    opacity: 1;
+}
+.position-relative:hover {
+    padding-left: 50px;
+    transition: all 0.4s ease-in-out;
+}
 
