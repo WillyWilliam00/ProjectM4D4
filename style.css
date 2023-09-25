@@ -13,9 +13,7 @@
 }
 
 .Number-Book-Dinamic {
-    padding: 10px;
-    padding-top: 7px;
-    padding-bottom: 6px;
+    
     display: flex;
     align-items: center;
     position: absolute;
@@ -25,7 +23,7 @@
     transform: translate(-50%, -50%);
     transition: transform 0.2s ease-in;
     opacity: 0;
-    background-color: orange;
+    
 }
 
 
@@ -35,12 +33,12 @@
 }
 
 .position-relative-animation   .Number-Book-Dinamic {
-    transform: translate(-40px, -50%);
+    transform: translate(-45px, -50%);
     transition: opacity 0.1s ease-in 0.3s;
     opacity: 1;
 }
 .position-relative-animation {
-    padding-left: 50px;
+    padding-left: 80px;
     
 }
 
