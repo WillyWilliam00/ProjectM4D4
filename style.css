@@ -4,6 +4,13 @@
     font-weight: bolder;
 }
 
+.body {
+    background-color: #0b690b;
+}
+
+.navbar form {
+    width: 55vw;
+}
 .navbar-brand {
     font-weight: bold;
     
@@ -11,7 +18,11 @@
 .nav-cart {
     font-size: 30px;
 }
-
+.text {
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .Number-Book-Dinamic {
     
     display: flex;
@@ -76,3 +87,16 @@
     transform: scale(1);
     transition: transform 0.1s ease-in;
 }
+
+.col-3 button {
+    background: #0b690b;
+}
+
+.offcanvas .px-3.py-3 {
+    background-color: #0b690b;
+}
+
+.offcanvas img {
+    width: 90px;
+}
+
