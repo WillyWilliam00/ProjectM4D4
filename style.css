@@ -11,7 +11,11 @@
 .nav-cart {
     font-size: 30px;
 }
-
+.text {
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .Number-Book-Dinamic {
     
     display: flex;

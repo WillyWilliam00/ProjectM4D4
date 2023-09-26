@@ -8,14 +8,14 @@ fetch("https://striveschool-api.herokuapp.com/books")
 .then(books => { console.log(books)
   const ArrayCards = books.map( book => /*html*/
               `<div class="col-3 my-5">
-                <div class="card">
+                <div class="card border-0 ">
                     <img src="${book.img}" class="card-img-top" style="height: 450px" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title card-title-inbody">${book.title}</h5>
+                      <h5 class="card-title card-title-inbody text">${book.title}</h5>
                       <p class="card-text">${book.price}€</p>
-                      <button type="button" class="btn btn-primary position-relative" onclick='AddBook("${book.price}", "${book.title}", "${book.img}", event )'><span><i class="bi bi-cart cart-main"></i></span>
+                      <button type="button" class=" border-0 btn btn-primary position-relative" style="background: #0b690b" onclick='AddBook("${book.price}", "${book.title}", "${book.img}", event )'><span><i class="bi bi-cart cart-main"></i></span>
                       </button>
-                      <button type="button" class="btn btn-primary d-none" onclick='RemoveBook("${book.title}", event)'>X TOGLI DAL CARRELLO X</button>
+                      <button type="button" class="btn btn-primary d-none bg-danger text-white border-0" onclick='RemoveBook("${book.title}", event)'>X TOGLI DAL CARRELLO X</button>
                     </div>
                 </div>
               </div>`
@@ -46,12 +46,14 @@ function AddBook(price, title, img, event) {
   CountTot.classList.add("position-relative-animation")
  
   NavBarList.innerHTML +=  /*html*/
-    `<div class=" d-flex flex-row">
+    `<div class=" d-flex flex-row border-bottom border-2 pb-3 pt-3">
     <img style="width: 90px" src="${img}">
-    <div class="card-body ms-2">
-      <h5 class="card-title card-title-inchart">${title}</h5>
-      <p class="card-text">Prezzo: <span class="count-inchart">${price}</span></p>
-      <button type="button" class="btn btn-primary" onclick='removefromchart(event, "${title}")'>X</button>
+    <div class="card-body d-flex flex-column justify-content-around ms-2">
+      <h6 class="card-title card-title-inchart">${title}</h6>
+      <div class="d-flex justify-content-between align-items-baseline">
+        <p class="card-text">Prezzo: <span class="count-inchart fw-medium">${price}€</span></p>
+        <button type="button" class="btn btn-primary bg-danger text-white border-0" onclick='removefromchart(event, "${title}")'>X</button>
+      </div>
     </div>
     </div>`
     total()
@@ -87,7 +89,7 @@ function AddBook(price, title, img, event) {
       }
       
     })
-     event.currentTarget.parentElement.parentElement.remove()
+     event.currentTarget.parentElement.parentElement.parentElement.remove()
      total()
   }
   
@@ -104,7 +106,7 @@ function AddBook(price, title, img, event) {
       
     })
     totalDOOM.forEach(total => {
-      total.innerHTML = prezzototale.toFixed(2)
+      total.innerHTML = `${prezzototale.toFixed(2)}€`
       })
 
   if(prezzototale === 0){
