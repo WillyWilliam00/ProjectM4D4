@@ -4,8 +4,8 @@
     font-weight: bolder;
 }
 
-.body {
-    background-color: #0b690b;
+body {
+    background-color: #0b690b !important;
 }
 
 .navbar form {
@@ -17,6 +17,7 @@
 }
 .nav-cart {
     font-size: 30px;
+    color: #0b690b;
 }
 .text {
     overflow: hidden;
@@ -53,7 +54,7 @@
     
 }
 
-.chart {
+.cart {
     
     position: relative;
     
@@ -99,4 +100,32 @@
 .offcanvas img {
     width: 90px;
 }
+
+.btn {
+     transform: scale(1) !important;
+     transition: transform 0.1s ease-in !important;
+}
+.btn:hover {
+    transform: scale(1.05) !important;
+    
+}
+
+.Animation-Cart {
+
+    animation: Total-Navbar-Cart 0.3s ease-in forwards;
+} 
+
+@keyframes Total-Navbar-Cart { 
+        
+    0% {
+        scale: 1;
+    }
+    50% {
+        scale: 1.3;            
+    }
+    100% {
+        scale: 1;           
+    }
+}
+
 
