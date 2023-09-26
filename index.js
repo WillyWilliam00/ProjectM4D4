@@ -7,15 +7,15 @@ fetch("https://striveschool-api.herokuapp.com/books")
 .then(response => response.json())
 .then(books => { console.log(books)
   const ArrayCards = books.map( book => /*html*/
-              `<div class="col-3 my-5">
+              `<div class="col-3 my-5" id="BookInbody_${book.asin}">
                 <div class="card">
                     <img src="${book.img}" class="card-img-top" style="height: 450px" alt="...">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                       <h5 class="card-title card-title-inbody">${book.title}</h5>
-                      <p class="card-text">${book.price}€</p>
-                      <button type="button" class="btn btn-primary position-relative" onclick='AddBook("${book.price}", "${book.title}", "${book.img}", event )'><span><i class="bi bi-cart cart-main"></i></span>
+                      <p class="card-text">Prezzo: ${book.price}€</p>
+                      <button type="button" class="btn btn-primary position-relative" onclick='AddBook("${book.price}", "${book.title}", "${book.img}", event, "${book.asin}" )'><span><i class="bi bi-cart cart-main"></i></span>
                       </button>
-                      <button type="button" class="btn btn-primary d-none" onclick='RemoveBook("${book.title}", event)'>X TOGLI DAL CARRELLO X</button>
+                      <button type="button" class="btn btn-primary d-none" onclick='RemoveBook("${book.asin}", event)'>X TOGLI DAL CARRELLO X</button>
                     </div>
                 </div>
               </div>`
@@ -25,7 +25,7 @@ fetch("https://striveschool-api.herokuapp.com/books")
   
 function text() {
     const value = document.querySelector("input").value
-    const ArrayCardsTitle = document.querySelectorAll(".card-title")
+    const ArrayCardsTitle = document.querySelectorAll(".card-title-inbody")
     const ZeroBooks = document.querySelector(".zero")
     let count = 0
     ArrayCardsTitle.forEach((Title, i) => {
@@ -37,7 +37,7 @@ function text() {
     
   }
   
-function AddBook(price, title, img, event) {
+function AddBook(price, title, img, event, asin) {
   const buttonAdd = event.currentTarget.parentElement.querySelector("button:nth-of-type(1)")
   const buttonRemove = event.currentTarget.parentElement.querySelector("button:nth-of-type(2)")
   
@@ -46,47 +46,39 @@ function AddBook(price, title, img, event) {
   CountTot.classList.add("position-relative-animation")
  
   NavBarList.innerHTML +=  /*html*/
-    `<div class=" d-flex flex-row">
-    <img style="width: 90px" src="${img}">
+    `<div class=" d-flex flex-row my-2 border-bottom border-3 pb-2" id="BookInchart_${asin}" >
+    <img style="width: 120px" src="${img}">
     <div class="card-body ms-2">
-      <h5 class="card-title card-title-inchart">${title}</h5>
+      <h6 class="card-title card-title-inchart">${title}</h6>
       <p class="card-text">Prezzo: <span class="count-inchart">${price}</span></p>
-      <button type="button" class="btn btn-primary" onclick='removefromchart(event, "${title}")'>X</button>
+      <button type="button" class="btn btn-primary" onclick='removefromchart(event, "${asin}")'>X</button>
     </div>
     </div>`
     total()
   }
   
   
-  function RemoveBook(title, event) {
+  function RemoveBook(asin, event) {
   
       const buttonAdd = event.currentTarget.parentElement.querySelector("button:nth-of-type(1)")
       const buttonRemove = event.currentTarget.parentElement.querySelector("button:nth-of-type(2)")
-      const Check = document.querySelectorAll(".card-title-inchart")
+      const book = document.querySelector("#BookInchart_" + asin)
       buttonAdd.classList.remove("d-none")
       buttonRemove.classList.add("d-none")
-
-    
-    Check.forEach((book) => {
-      if(title === book.innerHTML)
-      
-        book.parentElement.parentElement.remove()
-    })
-    total()
+      book.remove()
+      total()
     
     }
 
-  function removefromchart(event, title) {
-    const Check = document.querySelectorAll(".card-title-inbody")
-    Check.forEach((book) => {
-      if(book.innerHTML === title){
-        const buttonAdd = book.parentElement.querySelector("button:nth-of-type(1)")
-        const buttonRemove = book.parentElement.querySelector("button:nth-of-type(2)")
+  function removefromchart(event, asin) {
+    const book = document.querySelector("#BookInbody_" + asin)
+    
+      
+        const buttonAdd = book.querySelector("button:nth-of-type(1)")
+        const buttonRemove = book.querySelector("button:nth-of-type(2)")
         buttonAdd.classList.remove("d-none")
         buttonRemove.classList.add("d-none")
-      }
       
-    })
      event.currentTarget.parentElement.parentElement.remove()
      total()
   }
