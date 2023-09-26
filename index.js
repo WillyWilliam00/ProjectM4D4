@@ -13,7 +13,7 @@ fetch("https://striveschool-api.herokuapp.com/books")
                     <div class="card-body">
                       <h5 class="card-title card-title-inbody text">${book.title}</h5>
                       <p class="card-text">${book.price}€</p>
-                      <button type="button" class=" border-0 btn btn-primary position-relative" style="background: #0b690b" onclick='AddBook("${book.price}", "${book.title}", "${book.img}", event )'><span><i class="bi bi-cart cart-main"></i></span>
+                      <button type="button" class=" border-0 btn btn-primary position-relative" onclick='AddBook("${book.price}", "${book.title}", "${book.img}", event )'><span><i class="bi bi-cart cart-main"></i></span>
                       </button>
                       <button type="button" class="btn btn-primary d-none bg-danger text-white border-0" onclick='RemoveBook("${book.title}", event)'>X TOGLI DAL CARRELLO X</button>
                     </div>
@@ -47,7 +47,7 @@ function AddBook(price, title, img, event) {
  
   NavBarList.innerHTML +=  /*html*/
     `<div class=" d-flex flex-row border-bottom border-2 pb-3 pt-3">
-    <img style="width: 90px" src="${img}">
+    <img src="${img}">
     <div class="card-body d-flex flex-column justify-content-around ms-2">
       <h6 class="card-title card-title-inchart">${title}</h6>
       <div class="d-flex justify-content-between align-items-baseline">
