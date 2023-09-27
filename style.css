@@ -190,11 +190,14 @@ body {
   .card a:hover .more{
     z-index: 0;
   }
+  .navbar-toggler {
+    border-color:#0b690b !important;
+  }
 .button-home {
     padding: 5px;
     border: 1px solid  #0b690b;
     background-color: white;
-    width: 17vw;
+    width: 22vw;
     border-radius: 10px;
     margin: auto;
     transform: scale(1);

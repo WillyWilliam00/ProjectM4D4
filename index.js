@@ -39,7 +39,7 @@ ContainerCards.innerHTML = /*html*/
   .finally(() => {ContainerCards.querySelector(".lds-ring").remove()})
   
 function text() {
-    const value = document.querySelector("input").value
+    const value = document.querySelector("input").value 
     const ArrayCardsTitle = document.querySelectorAll(".card-title-inbody")
     
     let count = 0
