@@ -38,7 +38,7 @@ body {
     
 }
 
-.card img {
+.card-img-top {
     height: 450px;
 }
 
@@ -165,3 +165,30 @@ body {
       transform: rotate(360deg);
     }
   }
+
+  .more {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    transition: z-index 0.1s ease-in;
+    z-index: -1;
+  }
+
+  .card a img{
+    transition: filter 0.1s ease-in-out;
+    filter: brightness(1);
+  }
+
+  .card a:hover img {
+        filter: brightness(0.4);
+        
+      
+  }
+
+  .card a:hover .more{
+    z-index: 0;
+  }
+
+ 

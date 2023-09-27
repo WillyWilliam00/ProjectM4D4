@@ -17,15 +17,18 @@ ContainerCards.innerHTML = /*html*/
                  /*html*/
                  ContainerCards.innerHTML += `<div class="col-3 my-5" id="BookInbody_${book.asin}">
                  <div class="card border-0">
-                     <img src="${book.img}" class="card-img-top"alt="...">
-                     <a href="/Artists/artist.html?id=${book.asin}"><i class="bi bi-plus-lg"></i></a>
+                      <a href="/Artists/artist.html?id=${book.asin}">
+                         <img src="${book.img}" class="card-img-top " alt="...">
+                         <i class="bi bi-plus-circle more fs-2"></i>
+                      </a>
+                      
                      <div class="card-body text-center">
                        <h5 class="card-title card-title-inbody text">${book.title}</h5>
                        <p class="card-text">Prezzo: <span class="fw-medium">${book.price}€</span></p>
-                       <button type="button" class="border-0 btn btn-primary position-relative" onclick='AddBook(event, "${book.asin}")'><span><i class="bi bi-cart cart-main"></i></span>
+                       <button type="button" class="border-0 btn btn-primary position-relative" onclick='AddBook("${book.asin}")'><span><i class="bi bi-cart cart-main"></i></span>
                        </button>
-                       <button type="button" class="btn btn-primary d-none bg-danger text-white border-0" onclick='RemoveBook("${book.asin}", event)'>X TOGLI DAL CARRELLO X</button>
-                       <button type="button" class="btn btn-primary bg-secondary text-white border-0 m-2" onclick='nascondi("${book.asin}")'>NASCONDI</button>
+                       <button type="button" class="btn btn-primary d-none bg-danger text-white border-0" onclick='RemoveBook("${book.asin}")'>X TOGLI DAL CARRELLO X</button>
+                       <button type="button" class="btn btn-primary bg-secondary text-white border-0 m-2" onclick='NascondiBook("${book.asin}")'>NASCONDI</button>
                        </div>
                  </div>
                </div>`
@@ -48,28 +51,29 @@ function text() {
     
   }
   
-function AddBook(event, asin) {
+function AddBook(asin) {
 
-   
+    const BookInBody = document.querySelector("#BookInbody_" + asin)
     const NavCart = document.querySelector(".nav-cart")
-    const buttonAdd = event.currentTarget.parentElement.querySelector("button:nth-of-type(1)")
-    const buttonRemove = event.currentTarget.parentElement.querySelector("button:nth-of-type(2)")  
+    const ButtonAdd = BookInBody.querySelector("button:nth-of-type(1)")
+    const ButtonRemove = BookInBody.querySelector("button:nth-of-type(2)")
+    
   
     NavCart.classList.replace("bi-cart", "bi-cart-fill")
-    buttonAdd.classList.add("d-none")
-    buttonRemove.classList.remove("d-none")
+    ButtonAdd.classList.add("d-none")
+    ButtonRemove.classList.remove("d-none")
     CountTot.classList.add("position-relative-animation")
   
-   const CorrentBook =  TotalBooks.find(book => book.asin === asin)
-
+    
+     const CorrentBookinArray =  TotalBooks.find(book => book.asin === asin) 
      NavBarList.innerHTML +=  /*html*/
      `<div class=" d-flex flex-row border-bottom border-2 pb-3 pt-3" id="BookIncart_${asin}" >
-     <img src="${CorrentBook.img}">
+     <img src="${CorrentBookinArray.img}">
      <div class="card-body d-flex flex-column justify-content-around ms-2">
-       <h6 class="card-title card-title-incart">${CorrentBook.title}</h6>
+       <h6 class="card-title card-title-incart">${CorrentBookinArray.title}</h6>
        <div class="d-flex justify-content-between align-items-baseline">
-       <p class="card-text">Prezzo: <span class="count-incart fw-medium">${CorrentBook.price}€</span></p>
-       <button type="button" class="btn bg-danger text-white" onclick='removefromcart(event, "${asin}")'>X</button>
+       <p class="card-text">Prezzo: <span class="count-incart fw-medium">${CorrentBookinArray.price}€</span></p>
+       <button type="button" class="btn bg-danger text-white" onclick='removefromcart("${asin}")'>X</button>
        </div>
      </div>
      </div>`
@@ -79,51 +83,62 @@ function AddBook(event, asin) {
   }
   
   
-  function RemoveBook(asin, event) {
-      const buttonAdd = event.currentTarget.parentElement.querySelector("button:nth-of-type(1)")
-      const buttonRemove = event.currentTarget.parentElement.querySelector("button:nth-of-type(2)")
-      const book = document.querySelector("#BookIncart_" + asin)
-
+  function RemoveBook(asin) {
       
-      buttonAdd.classList.remove("d-none")
-      buttonRemove.classList.add("d-none")
-      book.remove()
+      const BookInCart = document.querySelector("#BookIncart_" + asin)
+      const BookInBody = document.querySelector("#BookInbody_" + asin)
+      const ButtonAdd = BookInBody.querySelector("button:nth-of-type(1)")
+      const ButtonRemove = BookInBody.querySelector("button:nth-of-type(2)")
+
+      ButtonAdd.classList.remove("d-none")
+      ButtonRemove.classList.add("d-none")
+      BookInCart.remove()
       total()
     
     }
 
-  function removefromcart(event, asin) {
-    const book = document.querySelector("#BookInbody_" + asin)
-    const buttonAdd = book.querySelector("button:nth-of-type(1)")
-    const buttonRemove = book.querySelector("button:nth-of-type(2)")
+  function removefromcart(asin) {
+    const BookInBody = document.querySelector("#BookInbody_" + asin)
+    const BookInCart = document.querySelector("#BookIncart_" + asin)
+    const ButtonAdd = BookInBody.querySelector("button:nth-of-type(1)")
+    const ButtonRemove = BookInBody.querySelector("button:nth-of-type(2)")
     
-    buttonAdd.classList.remove("d-none")
-    buttonRemove.classList.add("d-none")
+    ButtonAdd.classList.remove("d-none")
+    ButtonRemove.classList.add("d-none")
       
-     event.currentTarget.parentElement.parentElement.parentElement.remove()
-     total()
+    BookInCart.remove()
+    total()
   }
 
-  function nascondi(asin) {
-    const book = document.querySelector("#BookInbody_" + asin)  
-    book.classList.add("d-none")
-     
+  function RemoveAllBooks() {
+    const AllBooksInBody = document.querySelectorAll(".card")
+    
+    NavBarList.innerHTML = ""
+    AllBooksInBody.forEach(book => {
+      const ButtonAdd = book.querySelector(".card button:nth-of-type(1)")
+      const ButtonRemove = book.querySelector(".card button:nth-of-type(2)")
+      ButtonAdd.classList.remove("d-none")
+      ButtonRemove.classList.add("d-none")
+    })
+    total()
+  }
+
+  function NascondiBook(asin) {
+    document.querySelector("#BookInbody_" + asin).classList.add("d-none")  
   }
   
  
   function total() {
   
-    let prezzototale = 0
     const NavCart = document.querySelector(".nav-cart")
     const totalPrices = document.querySelectorAll(".count-incart")
     const TotalDOMandCart = document.querySelectorAll(".total")
     const quantity = document.querySelector(".quantity")
+    let prezzototale = 0
 
     quantity.innerHTML = totalPrices.length
-    
     totalPrices.forEach(x => {
       prezzototale = prezzototale + parseFloat(x.innerHTML)
-      
     })
     TotalDOMandCart.forEach(total => {
       total.innerHTML = `${prezzototale.toFixed(2)}€`
