@@ -18,7 +18,7 @@ ContainerCards.innerHTML = /*html*/
                  ContainerCards.innerHTML += `<div class="col-3 my-5" id="BookInbody_${book.asin}">
                  <div class="card border-0">
                      <img src="${book.img}" class="card-img-top"alt="...">
-                     <a href="/Artists/artist.html"><i class="bi bi-plus-lg"></i></a>
+                     <a href="/Artists/artist.html?id=${book.asin}"><i class="bi bi-plus-lg"></i></a>
                      <div class="card-body text-center">
                        <h5 class="card-title card-title-inbody text">${book.title}</h5>
                        <p class="card-text">Prezzo: <span class="fw-medium">${book.price}€</span></p>
