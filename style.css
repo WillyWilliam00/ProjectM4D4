@@ -190,5 +190,23 @@ body {
   .card a:hover .more{
     z-index: 0;
   }
+.button-home {
+    padding: 5px;
+    border: 1px solid  #0b690b;
+    background-color: white;
+    width: 17vw;
+    border-radius: 10px;
+    margin: auto;
+    transform: scale(1);
+    transition: transform 0.1s ease-in;
+}
+.button-home span, .button-home i{
+    
+    color: #0b690b;
+    
+}
 
+.button-home:hover {
+    transform: scale(1.05);
+}
  

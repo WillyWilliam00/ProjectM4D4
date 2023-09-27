@@ -33,7 +33,8 @@ fetch(`https://striveschool-api.herokuapp.com/books/${id}`)
         </div>
       </div>`
   })
+  .catch(() => {ContainerArtist.innerHTML = "......ooooppsss something wrong!"})
   .finally(() => {
     ContainerArtist.querySelector(".lds-ring").remove()
-    document.querySelector(".col-12 a").classList.remove("d-none")
+    document.querySelector(".button-home").classList.remove("d-none")
   })

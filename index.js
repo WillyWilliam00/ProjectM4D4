@@ -15,8 +15,8 @@ ContainerCards.innerHTML = /*html*/
                 
                  TotalBooks.push(book)
                  /*html*/
-                 ContainerCards.innerHTML += `<div class="col-3 my-5" id="BookInbody_${book.asin}">
-                 <div class="card border-0">
+                 ContainerCards.innerHTML += `<div class="col-3 my-5" >
+                 <div class="card border-0" id="BookInbody_${book.asin}">
                       <a href="/Artists/artist.html?id=${book.asin}">
                          <img src="${book.img}" class="card-img-top " alt="...">
                          <i class="bi bi-plus-circle more fs-2"></i>
@@ -35,6 +35,7 @@ ContainerCards.innerHTML = /*html*/
            });
     
     })
+  .catch(() => {ContainerArtist.innerHTML = "......ooooppsss something wrong!"})
   .finally(() => {ContainerCards.querySelector(".lds-ring").remove()})
   
 function text() {
@@ -110,7 +111,7 @@ function AddBook(asin) {
     total()
   }
 
-  function RemoveAllBooks() {
+  function RemoveAllBooksFromCart() {
     const AllBooksInBody = document.querySelectorAll(".card")
     
     NavBarList.innerHTML = ""
@@ -124,7 +125,16 @@ function AddBook(asin) {
   }
 
   function NascondiBook(asin) {
-    document.querySelector("#BookInbody_" + asin).classList.add("d-none")  
+    document.querySelector("#BookInbody_" + asin).parentElement.classList.add("d-none")  
+  }
+  function RefreshBooks() {
+    const AllBooksInBody = document.querySelectorAll(".card")
+    
+    
+     AllBooksInBody.forEach(book => {
+       book.parentElement.classList.remove("d-none")
+      
+     })
   }
   
  
