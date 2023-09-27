@@ -4,6 +4,8 @@ const CountTot = document.querySelector(".div-animation")
 const NavBarList = document.querySelector('.offcanvas-body')
 const NoBooks = document.querySelector(".NoBooks")
 const TotalBooks = []
+
+
 ContainerCards.innerHTML = /*html*/ 
 
     `<div class="lds-ring"><div></div><div></div><div></div><div></div></div>`
@@ -27,8 +29,8 @@ ContainerCards.innerHTML = /*html*/
                        <p class="card-text">Prezzo: <span class="fw-medium">${book.price}€</span></p>
                        <button type="button" class="border-0 btn btn-primary position-relative" onclick='AddBook("${book.asin}")'><span><i class="bi bi-cart cart-main"></i></span>
                        </button>
-                       <button type="button" class="btn btn-primary d-none bg-danger text-white border-0" onclick='RemoveBook("${book.asin}")'>X TOGLI DAL CARRELLO X</button>
-                       <button type="button" class="btn btn-primary bg-secondary text-white border-0 m-2" onclick='NascondiBook("${book.asin}")'>NASCONDI</button>
+                       <button type="button" class="btn btn-primary d-none bg-danger text-white border-0" onclick='RemoveBook("${book.asin}")'>REMOVE FROM CART</button>
+                       <button type="button" class="btn btn-primary bg-secondary text-white border-0 m-2" onclick='NascondiBook("${book.asin}")'>HIDE</button>
                        </div>
                  </div>
                </div>`
@@ -36,8 +38,7 @@ ContainerCards.innerHTML = /*html*/
     
     })
   .catch(()=>ContainerCards.innerHTML = `<div class="m-5">
-                                            <p class="fs-1 fw-bold text-center text-light m-5">...
-                                                OOPS SOMETHING WRONG<br>REFRESH THE PAGE</p>
+                                            <p class="fs-1 fw-bold text-center text-light m-5">...OOPS SOMETHING WRONG<br>REFRESH THE PAGE</p>
                                          </div>`)
   .finally(() => {ContainerCards.querySelector(".lds-ring").remove()})
   
