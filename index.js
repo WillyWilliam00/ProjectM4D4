@@ -35,7 +35,10 @@ ContainerCards.innerHTML = /*html*/
            });
     
     })
-  .catch(() => {ContainerArtist.innerHTML = "......ooooppsss something wrong!"})
+  .catch(()=>ContainerCards.innerHTML = `<div class="m-5">
+                                            <p class="fs-1 fw-bold text-center text-light m-5">...
+                                                OOPS SOMETHING WRONG<br>REFRESH THE PAGE</p>
+                                         </div>`)
   .finally(() => {ContainerCards.querySelector(".lds-ring").remove()})
   
 function text() {
